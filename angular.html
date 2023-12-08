@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <script>
+            var app = angular.module("skillset", []);
+            app.controller("myCtrl", function ($scope) {
+                $scope.products = ["Python", "HTML"];
+                $scope.addItem = function () {
+                    $scope.products.push($scope.addMe);
+                }
+                $scope.removeItem = function (x) {
+                    $scope.products.splice(x, 1);
+                }
+
+                // Initializing form fields
+                $scope.firstName = "Rith";
+                $scope.lastName = "Munt=ny";
+                $scope.age = 18;
+                $scope.field = "Software Engineering";
+                $scope.email = "Rithmunny123@gmail.com";
+            });
+        </script>
+        <h2>Enrollment</h2>
+        <h4>Skills:</h4>
+        <div ng-app="skillset" ng-controller="myCtrl">
+            <ul>
+                <li ng-repeat="x in products">
+                    {{x}}<span ng-click="removeItem($index)">&times;</span>
+                </li>
+            </ul>
+            <input ng-model="addMe">
+            <button ng-click="addItem()">Add</button>
+
+            <br><br>
+
+            <form name="myForm">
+                First Name: <input type="text" ng-model="firstName"><br>
+                Last Name: <input type="text" ng-model="lastName"><br>
+                Age: <input type="number" ng-model="age"><br>
+                Field: <input type="text" ng-model="field"><br>
+                Email:
+                <input type="email" name="myAddress" ng-model="email">
+                <span ng-show="myForm.myAddress.$error.email" style="color:red">Not a valid e-mail address</span>
+            </form>
+
+            <br>
+            Full Name: {{firstName + " " + lastName}}<br>
+            Age: {{age}}<br>
+            Field: {{field}}<br>
+            Email: {{email}}<br>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
